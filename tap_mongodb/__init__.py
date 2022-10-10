@@ -253,6 +253,11 @@ def get_connection_string(config: Dict):
 
     Returns: A MongoClient connection string
     """
+    uri = config.get('uri')
+    if uri is not None:
+        LOGGER.debug('using uri %s', uri)
+        return uri
+
     srv = config.get('srv') is True or config.get('srv') == 'true'
 
     # Default SSL verify mode to true, give option to disable
